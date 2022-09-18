@@ -1,0 +1,22 @@
+div  p{
+    background-color: yellow;
+    color: red;
+    font-size: 20px;
+    text-align: center;
+}
+/*
+ or you could use the classes name instead of type but don't forget the dot sign and the space that is needed for the inheritence interpretation
+
+.container .text {
+  background-color: yellow;
+  color: red;
+  font-size: 20px;
+  text-align: center;
+}
+
+Below are some other possible descendant combinators:
+div p
+div .text
+.container p
+
+*/
