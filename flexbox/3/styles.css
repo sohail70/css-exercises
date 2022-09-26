@@ -1,0 +1,101 @@
+/*
+
+Keyword values 
+flex: auto;
+flex: initial;
+flex: none;
+
+ One value, unitless number: flex-grow
+flex-basis is then equal to 0. 
+flex: 2;
+
+ One value, width/height: flex-basis 
+flex: 10em;
+flex: 30%;
+flex: min-content;
+
+ Two values: flex-grow | flex-basis 
+flex: 1 30px;
+
+Two values: flex-grow | flex-shrink 
+flex: 2 2;
+
+ Three values: flex-grow | flex-shrink | flex-basis 
+flex: 2 2 10%;
+
+ Global values 
+flex: inherit;
+flex: initial;
+flex: revert;
+flex: revert-layer;
+flex: unset;
+
+The flex property may be specified using one, two, or three values.
+
+One-value syntax: the value must be one of:
+a <number>: In this case it is interpreted as flex: <number> 1 0; the flex-shrink value is assumed to be 1 and the flex-basis value is assumed to be 0.
+a <width>: In this case it is interpreted as flex: 1 1 <width>; the flex-grow value is assumed to be 1 and the flex-shrink value is assumed to be 1.
+one of the keywords: none, auto, or initial.
+Two-value syntax:
+The first value must be:
+a <number> and it is interpreted as <flex-grow>.
+The second value must be one of:
+a <number>: then it is interpreted as <flex-shrink>.
+a valid value for width: then it is interpreted as <flex-basis>.
+Three-value syntax: the values must be in the following order:
+a <number> for <flex-grow>.
+a <number> for <flex-shrink>.
+a valid value for width for <flex-basis>.
+
+
+
+
+For most purposes, authors should set flex to one of the following values: auto, initial, none, or a positive unitless number. To see the effect of these values, try resizing the flex containers below:
+
+flex :1 on flex item ---> it means -->  makes the items grow or shrink equally to fill all of the available space
+
+https://flexbox.malven.co/
+*/
+
+
+.base{
+    background-color: blue;
+    margin: 20px;
+    padding: 100px;
+    display: flex;
+    text-align: center;
+    font-size: 30px;
+
+    /*
+ the default behavior is flex-direction: row The reason this often works well without changing other details in the CSS is because block-level elements default to the full width of their parent. Changing things to vertical using flex-direction: column adds complexity because block-level elements default to the height of their content, and in this case there is no content. There are situations where the behavior of flex-direction could change if you are using a language that is written top-to-bottom or right-to-left, but you should save worrying about that until you are ready to start making a website in Arabic or Hebrew.
+    
+ In a column flex-container, what does flex-basis refer to? height
+In a row flex-container, what does flex-basis refer to? width
+ */
+    flex-direction:column; /*age in column bashe va paeen flex: 1 ro bezari kar nemikune! bekhater div collapse The reason for this is that the flex shorthand expands flex-basis to 0, which means that all flex-growing and flex-shrinking would begin their calculations from 0. Empty divs by default have 0 height, so for our flex items to fill up the height of their container, they don’t actually need to have any height at all. The example above fixed this by specifying flex: 1 1 auto, telling the flex items to default to their given height. We could also have fixed it by putting a height on the parent .flex-container, or by using flex-grow: 1 instead of the shorthand. */
+    /*
+Another detail to notice: when we changed the flex-direction to column, flex-basis refers to height instead of width. Given the context this may be obvious, but it’s something to be aware of.
+    */
+}
+
+.button1{
+   background-color: red;
+   border: 10px solid purple; /*3 ta flex item ro be tartib benvesi: auto-auto-auto then /auto-initial-initial / auto-auto-none/ initial-none-none/4-2-1/ play around:) */
+   flex: auto ;
+
+   
+   
+}
+
+.button2{
+    background-color: red;
+    border: 10px solid purple;
+
+    flex: auto;
+ }
+
+ .button3{
+    background-color: red;
+    border: 10px solid purple;
+    flex: initial;
+ }

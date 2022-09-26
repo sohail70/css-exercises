@@ -1,0 +1,191 @@
+/*
+The cross axis runs perpendicular to the main axis, therefore if your flex-direction (main axis) is set to row or row-reverse the cross axis runs down the columns.
+If your main axis is column or column-reverse then the cross axis runs along the rows.
+
+If the flex-direction is row and I am working in English, then the start edge of the main axis will be on the left, the end edge on the right.
+If I were to work in Arabic, then the start edge of my main axis would be on the right and the end edge on the left.
+
+flex container --> parent ---> be mahze inke display: flex or inline-flex ro bezani child haye oon tag mishan flex items
+flex item --> children
+
+the flex-direction property's default is row)
+The items start from the start edge of the main axis.
+The items do not stretch on the main dimension, but can shrink.
+The items will stretch to fill the size of the cross axis.
+The flex-basis property is set to auto.
+The flex-wrap property is set to nowrap.
+
+flex-direction: row-reverse will keep the items displaying along the row, however the start and end lines are switched.
+
+multi-line -->  flex-wrap with a value of wrap. Now, should your items be too large to all display in one line, they will wrap onto another line. 
+Using nowrap would cause an overflow if the items were not able to shrink, or could not shrink small enough to fit.
+
+
+The flex-flow shorthand --> ye ja neveshtan ---> flex-flow: row wrap; --> direction va wrap mishe in
+
+available space-->If we have three 100 pixel-wide items in a container which is 500 pixels wide, then the space we need to lay out our items is 300 pixels.
+This leaves 200 pixels of available space. If we don't change the initial values then flexbox will put that space after the last item.
+If we instead would like the items to grow and fill the space, then we need to have a method of distributing the leftover space between the items.
+This is what the flex properties that we apply to the items themselves, will do.
+
+
+
+flex-basis -->  defines the size of that item in terms of the space it leaves as available space
+The initial value of this property is auto — in this case the browser looks to see if the items have a size.
+In the example above, all of the items have a width of 100 pixels and so this is used as the flex-basis.
+If the items don't have a size then the content's size is used as the flex-basis. This is why when 
+we just declare display: flex on the parent to create flex items, the items all move into a row and take only as much space as they need to display their contents.
+
+flex-grow --> With the flex-grow property set to a positive integer, flex items can grow along the main axis from their flex-basis. 
+If we gave all of our items in the example above a flex-grow value of 1 then the available space in the flex container would be equally
+shared between our items and they would stretch to fill the container on the main axis.
+The flex-grow property can be used to distribute space in proportion. If we give our first item a flex-grow value of 2,
+and the other items a value of 1 each, 2 parts of the available space will be given to the first item (100px out of 200px 
+in the case of the example above), 1 part each the other two (50px each out of the 200px total).
+
+flex-shrink -->If we do not have enough space in the container to lay out our items,
+and flex-shrink is set to a positive integer, then the item can become smaller than the flex-basis
+an item with a higher value set for flex-shrink will shrink faster than its siblings that have lower values.
+
+Note: These values for flex-grow and flex-shrink are proportions. Typically if we had all of our items set to flex: 1 1 200px and then wanted
+one item to grow at twice the rate, we would set that item to flex: 2 1 200px. However you could also use flex: 10 1 200px and flex: 20 1 200px if you wanted.
+
+
+flex shorthand --> flex-grow, flex-shrink, flex-basis
+
+
+in many cases these are all you will need to use:
+flex: initial --> flex: 0 1 auto --> In this case the value of flex-grow is 0, so items will not grow larger than their flex-basis size.  The value of flex-shrink is 1, so items can shrink if they need to rather than overflowing. The value of flex-basis is auto. Items will either use any size set on the item in the main dimension, or they will get their size from the content size.
+flex: auto --> flex: 1 1 auto --> everything is as with flex:initial but in this case the items can grow and fill the container as well as shrink if required.
+flex: none -->  fully inflexible flex items. It is as if you wrote flex: 0 0 auto.  The items cannot grow or shrink but will be laid out using flexbox with a flex-basis of auto
+flex: <positive-number>
+
+flex: 1 --> flex: 1 1 0 -->The items can grow and shrink from a flex-basis of 0.
+flex: 2 --> flex: 2 1 0 -->The items can grow and shrink from a flex-basis of 0.
+
+
+align-items--> The align-items property will align the items on the cross axis.
+The initial value for this property is stretch and this is why flex items stretch to the height of the flex container by default.
+This might be dictated by the height of the tallest item in the container, or by a size set on the flex container itself.
+
+align-items: flex-start --->make the items line up at the start of the flex container --> or use flex-end to align them to the end, or center to align them in the center
+
+
+
+
+justify-content --> The justify-content property is used to align the items on the main axis, the direction in which flex-direction has set the flow.
+The initial value is flex-start which will line the items up at the start edge of the container, 
+but you could also set the value to flex-end to line them up at the end, or center to line them up in the center.
+You can also use the value space-between to take all the spare space after the items have been laid out, and share it out evenly between the items so there will be
+an equal amount of space between each item. To cause an equal amount of space on the right and left of each item use the value space-around. With space-around, items have a half-size
+space on either end. Or, to cause items to have equal space around them use the value space-evenly. With space-evenly, items have a full-size space on either end.
+
+justify-items
+The justify-items property is ignored in flexbox layouts.
+
+
+
+
+Properties that control alignment:
+justify-content — controls alignment of all items on the main axis.
+align-items — controls alignment of all items on the cross axis.
+align-self — controls alignment of an individual flex item on the cross axis.
+align-content — described in the spec as for "packing flex lines"; controls space between flex lines on the cross axis.
+gap, column-gap, and row-gap — used to create gaps or gutters between flex items.
+
+
+align-items: flex-start --> hame miran bala- albate deghat kun on item ee ke content esh bishtare ziresh hamsath baghie nist lozoman
+align-items: flex-end --> hame paeen conainter
+align-items: center ---> vasate container miran hame
+align-items: stretch -->  the items become the same height is that the initial value of align-items, the property that controls alignment on the cross axis, is set to stretch. dar vaghe height shoon ba container yeki mishe mage inke vase item ha joda width o height define kuni
+align-items: baseline
+
+
+Aligning one item with align-self:
+The align-items property sets the align-self property on all of the flex items as a group. This means you can explicitly declare the align-self property to target a single item.
+
+The align-self property accepts all of the same values as align-items plus a value of auto, which will reset the value to that which is defined on the flex container.
+align-self ro toye item ha bayad benvisi
+
+
+changing the main axis --> flex-direction ta alan row bood hala age column beshe oon vaght align-item mishe dar rastaye cross axis ke dar vaghe mishe
+perpendicular be main yani mishe dar rastaye mehvar x 
+
+
+
+
+Aligning content on the cross axis — the align-content property
+So far we have been aligning the items, or an individual item inside the area defined by the flex-container. 
+If you have a wrapped multiple-line flex container then you might also want to use the align-content property to control the distribution of space between the rows
+For align-content to work you need more height in your flex container than is required to display the items.
+It then works on all the items as a set, and dictates what happens with that free space, and the alignment of the entire set of items within it.
+
+align-content: flex-start
+align-content: flex-end
+align-content: center
+align-content: space-between
+align-content: space-around
+align-content: stretch
+align-content: space-evenly (not defined in the Flexbox specification)
+
+deghat kun align dar ha dar rastaye cross axis hastan pas in align-content ham mesle align item dar rastaye cross axis hast
+
+Once again we can switch our flex-direction to column in order to see how this property behaves when we are working by column.
+As before, we need enough space in the cross axis (dar in halat mishe width yani mehvare x) to have some free space after displaying all of the items.
+
+
+Aligning content on the main axis:
+With justify-content we control what happens with available space, should there be more space than is needed to display the items.
+
+justify-content: flex-start -->default
+justify-content: flex-end
+justify-content: center
+justify-content: space-between
+justify-content: space-around
+justify-content: space-evenly (not defined in the Flexbox specification)
+
+
+age flex-direction is set to column beshe oon veght main axis mishe mehvare y
+
+
+Alignment and Writing Modes:
+Remember that with all of these alignment methods, 
+the values of flex-start and flex-end are writing mode-aware. If the value of justify-content is flex-start and the writing mode is 
+left-to-right as in English, the items will line up starting at the left side of the container.
+
+However if the writing mode is right-to-left as in Arabic, the items will line up starting at the right side of the container.
+
+vase right to left kardan va vice versa bayad dar parent benvisi:
+direction: ltr;
+
+flex-direction: row-reverse and justify-content: flex-end. In a left to right language the items all line up
+on the left. Try changing flex-direction: row-reverse to flex-direction: row
+
+
+While this may all seem a little confusing, the rule to remember is that unless you do something to change it, 
+flex items lay themselves out in the direction that words are laid out in the language of your document along the inline, row axis. 
+flex-start will be where the start of a sentence of text would begin.
+
+
+You can switch them to display in the block direction for the language of your document by selecting flex-direction: column.
+Then flex-start will then be where the top of your first paragraph of text would start.
+
+If you change flex-direction to one of the reverse values, then they will lay themselves out from the end axis and in the reverse order to the way words
+are written in the language of your document. flex-start will then change to the end of that axis — so to the location where your lines would
+wrap if working in rows, or at the end of your last paragraph of text in the block direction.
+
+
+
+We don't have a justify-items or justify-self property available to us on the main axis as our items are treated as a group on that axis --> yani dg mesle align-self ke vase cross axis bod inja nadarim 
+vali mishe ye karaee kard
+Using auto margins for main axis alignment --> chejoori a,b,c dar samte chap bashan va item haye d,e dar samt rast align shode bashan yani seperate beshan?
+use margin-lef: auto; on item4 to push it to the right and separate it
+
+Creating gaps between items:
+he column-gap property creates gaps between items on the main axis. 
+The row-gap property creates gaps between flex lines, when you have flex-wrap set to wrap. The gap property is a shorthand that sets both together.
+
+
+in site ro ham bekhoon --> https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+*/
